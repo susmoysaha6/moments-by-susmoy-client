@@ -6,8 +6,9 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Login = () => {
+    const [userEmail, setUserEmail] = useState('');
     const [error, setError] = useState('');
-    const { login, setLoading } = useContext(AuthContext)
+    const { login, setLoading, resetPassword } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
@@ -16,7 +17,6 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
         login(email, password)
             .then(result => {
                 const user = result.user;
@@ -35,6 +35,14 @@ const Login = () => {
                 setLoading(false);
             })
     }
+    // reset password
+    const handleReset = () => {
+        resetPassword(userEmail)
+            .then(() => {
+                toast.success('Reset link has been sent, please check email')
+            })
+            .catch(error => toast.error(error.message))
+    }
     return (
         <div className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-5 mb-24 shadow-2xl p-5">
             <form onSubmit={handleSubmit} >
@@ -47,6 +55,7 @@ const Login = () => {
                         />
                     </div>
                     <TextInput
+                        onBlur={e => setUserEmail(e.target.value)}
                         id="email2"
                         type="email"
                         placeholder="Your Name"
@@ -72,12 +81,17 @@ const Login = () => {
                     />
                 </div>
                 <p className='mt-5'>Don't Have Account? <Link to='/signup'><span className='text-blue-500'>register here</span></Link></p>
-
+                <p className='text-red-500'>{error}</p>
                 <Button className='w-full mt-5' type="submit">
                     Login
                 </Button>
             </form>
-            <p className='text-red-500'>{error}</p>
+            <p className='mt-3 text-lg font-semibold'>Forget Password
+                <button
+                    onClick={handleReset} className='text-blue-500'>
+                    Click Here
+                </button>
+            </p>
             <p className='text-center'>Or,</p>
             <SocialLogin />
         </div>

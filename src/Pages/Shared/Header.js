@@ -1,13 +1,15 @@
 import { Button } from 'flowbite-react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { } = useContext(AuthContext);
 
     return (
-        <div className="px-4 mb-12 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 sticky top-0 bg-white dark:bg-slate-800  z-50 h-fit">
+        <div className="px-4 mb-12 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 sticky top-0 bg-slate-200 text-slate-700  z-50 h-fit">
             <div className="relative flex items-center justify-between">
                 <Link
                     to="/"
@@ -131,7 +133,7 @@ const Header = () => {
                                                 Add Sevices
                                             </p>
                                         </Link>
-                                        <Button className='w-1/2'>Log Out</Button>
+                                        <Button gradientMonochrome="info" className='w-1/2 mx-auto my-5'>Log Out</Button>
                                     </ul>
                                 </nav>
                             </div>

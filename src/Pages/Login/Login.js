@@ -1,15 +1,39 @@
 import { Button, Label, TextInput } from 'flowbite-react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../Shared/SocialLogin';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+    const [error, setError] = useState('');
+    const { login, setLoading } = useContext(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        login(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('');
+                navigate(from, { replace: true });
+                toast.success("Your log in has been successful")
+            })
+            .catch(error => {
+                console.error(error);
+                setError(error.message);
+                toast.error(error.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     }
     return (
         <div className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-5 mb-24 shadow-2xl p-5">
@@ -53,6 +77,7 @@ const Login = () => {
                     Login
                 </Button>
             </form>
+            <p className='text-red-500'>{error}</p>
             <p className='text-center'>Or,</p>
             <SocialLogin />
         </div>

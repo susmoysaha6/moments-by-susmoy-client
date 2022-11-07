@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../Shared/SocialLogin';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
+
 
 const Login = () => {
     const [userEmail, setUserEmail] = useState('');
@@ -12,6 +14,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
+    useTitle('Login')
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -80,7 +83,7 @@ const Login = () => {
                         shadow={true}
                     />
                 </div>
-                <p className='mt-5'>Don't Have Account? <Link to='/signup'><span className='text-blue-500'>register here</span></Link></p>
+                <p className='mt-5'>Don't Have Account? <Link to='/signup'><span className='text-blue-600 font-semibold'>Sign Up here</span></Link></p>
                 <p className='text-red-500'>{error}</p>
                 <Button className='w-full mt-5' type="submit">
                     Login
@@ -88,7 +91,7 @@ const Login = () => {
             </form>
             <p className='mt-3 text-lg font-semibold'>Forget Password
                 <button
-                    onClick={handleReset} className='text-blue-500'>
+                    onClick={handleReset} className='text-blue-600 ml-2'>
                     Click Here
                 </button>
             </p>

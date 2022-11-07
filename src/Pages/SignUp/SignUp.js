@@ -3,11 +3,13 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
     const { createUser, updateUserProfile, } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    useTitle('Sign Up')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -112,7 +114,7 @@ const SignUp = () => {
                     shadow={true}
                 />
             </div>
-            <p>Already have an account? <Link to='/login'><span className='text-blue-500'>Login</span></Link></p>
+            <p>Already have an account? <Link to='/login'><span className='text-blue-600 font-semibold'>Login Here</span></Link></p>
             <p className='text-red-500'>{error}</p>
             <Button type="submit">
                 Sign Up

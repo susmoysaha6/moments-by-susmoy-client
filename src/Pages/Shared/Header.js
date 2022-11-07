@@ -27,7 +27,7 @@ const Header = () => {
                 >
                     <img width={50} src={logo} alt="" />
                     <span className="ml-2 md:text-2xl font-bold tracking-wide uppercase">
-                        Susmoy Photography
+                        MOMENTS BY SUSMOY
                     </span>
                 </Link>
                 <ul className=" items-center hidden space-x-8 lg:flex">
@@ -107,7 +107,7 @@ const Header = () => {
                                         >
                                             <img width={50} src={logo} alt="" />
                                             <span className="ml-2 md:text-xl font-bold tracking-wide uppercase">
-                                                Susmoy Photography
+                                                MOMENTS BY SUSMOY
                                             </span>
                                         </Link>
                                     </div>
@@ -130,17 +130,17 @@ const Header = () => {
                                 <nav>
                                     <ul className='flex flex-col'>
                                         <Link to="/" >
-                                            <p className='text-lg font-semibold'>
+                                            <p className='text-lg font-semibold my-2 hover:p-2 hover:bg-sky-400 hover:rounded hover:text-gray-800'>
                                                 Home
                                             </p>
                                         </Link>
                                         <Link to="/services" >
-                                            <p className='text-lg font-semibold'>
+                                            <p className='text-lg font-semibold my-2 hover:p-2 hover:bg-sky-400 hover:rounded hover:text-gray-800'>
                                                 Services
                                             </p>
                                         </Link>
                                         <Link to="/blogs" >
-                                            <p className='text-lg font-semibold'>
+                                            <p className='text-lg font-semibold my-2 hover:p-2 hover:bg-sky-400 hover:rounded hover:text-gray-800'>
                                                 Blogs
                                             </p>
                                         </Link>
@@ -148,25 +148,24 @@ const Header = () => {
                                             user?.uid ?
                                                 <>
                                                     <Link to="/reviews" >
-                                                        <p className='text-lg font-semibold'>
+                                                        <p className='text-lg font-semibold my-2 hover:p-2 hover:bg-sky-400 hover:rounded hover:text-gray-800'>
                                                             My Reviews
                                                         </p>
                                                     </Link>
                                                     <Link to="/add-service" >
-                                                        <p className='text-lg font-semibold'>
+                                                        <p className='text-lg font-semibold my-2 hover:p-2 hover:bg-sky-400 hover:rounded hover:text-gray-800'>
                                                             Add Sevices
                                                         </p>
                                                     </Link>
-                                                    <Button onClick={handleLogOut} gradientMonochrome="info" className='w-1/2 mx-auto my-5'>Log Out</Button>
+                                                    <Button onClick={handleLogOut} gradientMonochrome="info" className='w-1/4  my-2'>Log Out</Button>
                                                 </>
                                                 :
                                                 <Link to="/login" >
-                                                    <p className='text-lg font-semibold'>
+                                                    <p className='text-lg font-semibold my-2 hover:p-2 hover:bg-sky-400 hover:rounded hover:text-gray-800'>
                                                         Login
                                                     </p>
                                                 </Link>
                                         }
-
                                     </ul>
                                 </nav>
                             </div>

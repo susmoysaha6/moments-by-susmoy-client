@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useRouteError } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa'
+import useTitle from '../../hooks/useTitle';
 
 const ErrorPage = () => {
     const errorMessage = useRouteError();
+    useTitle('Error')
     return (
         <div>
             <section className="flex items-center h-full sm:p-16 dark:bg-gray-900 dark:text-gray-100">

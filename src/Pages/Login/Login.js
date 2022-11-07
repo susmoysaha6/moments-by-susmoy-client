@@ -10,12 +10,13 @@ import useTitle from '../../hooks/useTitle';
 const Login = () => {
     const [userEmail, setUserEmail] = useState('');
     const [error, setError] = useState('');
-    const { login, setLoading, resetPassword } = useContext(AuthContext)
+    const { login, setLoading, resetPassword, loading } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
     useTitle('Login')
-    const handleSubmit = (e) => {
+    // login 
+    const handleLoginSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -48,7 +49,8 @@ const Login = () => {
     }
     return (
         <div className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-5 mb-24 shadow-2xl p-5">
-            <form onSubmit={handleSubmit} >
+            {/* Login form */}
+            <form onSubmit={handleLoginSubmit} >
                 <h3 className="text-2xl text-center font-semibold">Login</h3>
                 <div className='my-5'>
                     <div className="mb-2 block">
@@ -84,17 +86,20 @@ const Login = () => {
                     />
                 </div>
                 <p className='mt-5'>Don't Have Account? <Link to='/signup'><span className='text-blue-600 font-semibold'>Sign Up here</span></Link></p>
+                {/* error message */}
                 <p className='text-red-500'>{error}</p>
                 <Button className='w-full mt-5' type="submit">
                     Login
                 </Button>
             </form>
+            {/* Reset password */}
             <p className='mt-3 text-lg font-semibold'>Forget Password
                 <button
                     onClick={handleReset} className='text-blue-600 ml-2'>
                     Click Here
                 </button>
             </p>
+            {/* sign in with google */}
             <p className='text-center'>Or,</p>
             <SocialLogin />
         </div>

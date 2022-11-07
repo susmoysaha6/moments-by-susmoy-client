@@ -11,7 +11,8 @@ const SignUp = () => {
     const navigate = useNavigate();
     useTitle('Sign Up')
 
-    const handleSubmit = (e) => {
+    // Sign up
+    const handleSignUpSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
@@ -36,6 +37,7 @@ const SignUp = () => {
             })
 
     }
+    // update user
     const handleUpdateUserProfile = (name, photoURL) => {
         const profile = {
             displayName: name,
@@ -48,7 +50,7 @@ const SignUp = () => {
             })
     };
     return (
-        <form onSubmit={handleSubmit} className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 my-5 shadow-2xl p-5">
+        <form onSubmit={handleSignUpSubmit} className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 my-5 shadow-2xl p-5">
             <h3 className="text-2xl text-center font-semibold">Sign Up</h3>
             <div>
                 <div className="mb-2 block">
@@ -115,6 +117,7 @@ const SignUp = () => {
                 />
             </div>
             <p>Already have an account? <Link to='/login'><span className='text-blue-600 font-semibold'>Login Here</span></Link></p>
+            {/* Error Message */}
             <p className='text-red-500'>{error}</p>
             <Button type="submit">
                 Sign Up

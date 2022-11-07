@@ -1,7 +1,7 @@
 import React from 'react';
 import useTitle from '../../hooks/useTitle';
 
-const Reviews = () => {
+const MyReviews = () => {
     useTitle('My Reviews')
     return (
         <div>
@@ -10,4 +10,4 @@ const Reviews = () => {
     );
 };
 
-export default Reviews;
+export default MyReviews;

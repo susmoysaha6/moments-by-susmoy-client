@@ -10,7 +10,7 @@ const SocialLogin = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
-
+    // sign in with google
     const handleGoogleLogin = () => {
         googleSignIn()
             .then(result => {

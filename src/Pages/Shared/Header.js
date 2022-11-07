@@ -1,12 +1,20 @@
 import { Button } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast.success('Log out successfully')
+            })
+            .catch(error => console.error(error))
+    }
 
     return (
         <div className="px-4 mb-12 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 sticky top-0 bg-slate-200 text-slate-700  z-50 h-fit">
@@ -33,22 +41,30 @@ const Header = () => {
                             Services
                         </p>
                     </Link>
-                    <Link to="/login" >
-                        <p className='text-2xl font-semibold'>
-                            Login
-                        </p>
-                    </Link>
-                    <Link to="/reviews" >
-                        <p className='text-2xl font-semibold'>
-                            Reviews
-                        </p>
-                    </Link>
-                    <Link to="/add-service" >
-                        <p className='text-2xl font-semibold'>
-                            Add Sevices
-                        </p>
-                    </Link>
-                    <Button>Log Out</Button>
+                    {
+                        user?.uid ?
+                            <>
+                                <Link to="/reviews" >
+                                    <p className='text-2xl font-semibold'>
+                                        Reviews
+                                    </p>
+                                </Link>
+                                <Link to="/add-service" >
+                                    <p className='text-2xl font-semibold'>
+                                        Add Sevices
+                                    </p>
+                                </Link>
+                                <Button gradientMonochrome="info" onClick={handleLogOut}>Log Out</Button>
+                            </>
+                            :
+                            <Link to="/login" >
+                                <p className='text-2xl font-semibold'>
+                                    Login
+                                </p>
+                            </Link>
+                    }
+
+
 
                 </ul>
                 <div className="lg:hidden">
@@ -118,22 +134,29 @@ const Header = () => {
                                                 Services
                                             </p>
                                         </Link>
-                                        <Link to="/login" >
-                                            <p className='text-lg font-semibold'>
-                                                Login
-                                            </p>
-                                        </Link>
-                                        <Link to="/reviews" >
-                                            <p className='text-lg font-semibold'>
-                                                Reviews
-                                            </p>
-                                        </Link>
-                                        <Link to="/add-service" >
-                                            <p className='text-lg font-semibold'>
-                                                Add Sevices
-                                            </p>
-                                        </Link>
-                                        <Button gradientMonochrome="info" className='w-1/2 mx-auto my-5'>Log Out</Button>
+                                        {
+                                            user?.uid ?
+                                                <>
+                                                    <Link to="/reviews" >
+                                                        <p className='text-lg font-semibold'>
+                                                            Reviews
+                                                        </p>
+                                                    </Link>
+                                                    <Link to="/add-service" >
+                                                        <p className='text-lg font-semibold'>
+                                                            Add Sevices
+                                                        </p>
+                                                    </Link>
+                                                    <Button onClick={handleLogOut} gradientMonochrome="info" className='w-1/2 mx-auto my-5'>Log Out</Button>
+                                                </>
+                                                :
+                                                <Link to="/login" >
+                                                    <p className='text-lg font-semibold'>
+                                                        Login
+                                                    </p>
+                                                </Link>
+                                        }
+
                                     </ul>
                                 </nav>
                             </div>

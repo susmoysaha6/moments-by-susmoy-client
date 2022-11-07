@@ -41,12 +41,17 @@ const Header = () => {
                             Services
                         </p>
                     </Link>
+                    <Link to="/blogs" >
+                        <p className='text-2xl font-semibold'>
+                            Blogs
+                        </p>
+                    </Link>
                     {
                         user?.uid ?
                             <>
                                 <Link to="/reviews" >
                                     <p className='text-2xl font-semibold'>
-                                        Reviews
+                                        My Reviews
                                     </p>
                                 </Link>
                                 <Link to="/add-service" >
@@ -134,12 +139,17 @@ const Header = () => {
                                                 Services
                                             </p>
                                         </Link>
+                                        <Link to="/blogs" >
+                                            <p className='text-lg font-semibold'>
+                                                Blogs
+                                            </p>
+                                        </Link>
                                         {
                                             user?.uid ?
                                                 <>
                                                     <Link to="/reviews" >
                                                         <p className='text-lg font-semibold'>
-                                                            Reviews
+                                                            My Reviews
                                                         </p>
                                                     </Link>
                                                     <Link to="/add-service" >

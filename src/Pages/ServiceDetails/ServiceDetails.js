@@ -1,5 +1,5 @@
 import { Button, Card } from 'flowbite-react';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link, Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
@@ -14,8 +14,17 @@ const ServiceDetails = () => {
     const service = useLoaderData();
     const { user } = useContext(AuthContext);
     console.log(user);
-
+    const [reviews, setReviews] = useState([]);
     const { _id, name, price, img, descriprion, rating } = service;
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setReviews(data)
+            })
+    }, [_id])
+
     // review submit
     const handleReviewSubmit = (e) => {
         e.preventDefault();
@@ -25,9 +34,10 @@ const ServiceDetails = () => {
 
         const reviewData = {
             service: _id,
+            serviceName: name,
             review,
-            name: user.displayName,
-            img: user.photoURL,
+            userName: user.displayName,
+            userImg: user.photoURL,
             insertionTime: new Date()
         }
 
@@ -45,6 +55,8 @@ const ServiceDetails = () => {
                 if (data.acknowledged) {
                     toast.success('Your review posted successfully')
                     form.reset();
+                    const newReview = [reviewData, ...reviews];
+                    setReviews(newReview);
                 }
             })
             .catch(err => {
@@ -78,10 +90,15 @@ const ServiceDetails = () => {
                     </p>
                 </Card>
             </div>
+            {/* review section */}
             <div className='w-11/12 mx-auto'>
                 <h3 className='text-3xl font-bold text-sky-500 mx-2 rounded text-center'>Reviews</h3>
                 <div>
-                    Review Will Load here
+                    {
+                        reviews.map(
+                            review => <p key={review.insertionTime}>{review.review}</p>
+                        )
+                    }
                 </div>
                 <div>
                     <h3 className='text-2xl font-bold text-sky-500 mx-2 rounded text-center my-5'>Write Your Review</h3>

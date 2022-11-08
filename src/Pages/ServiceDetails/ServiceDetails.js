@@ -1,17 +1,57 @@
-import { Card } from 'flowbite-react';
-import React from 'react';
+import { Button, Card } from 'flowbite-react';
+import React, { useContext } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { useLoaderData } from 'react-router-dom';
+import { Link, Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 import 'react-photo-view/dist/react-photo-view.css';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 const ServiceDetails = () => {
     useTitle('Service Details');
     const service = useLoaderData();
+    const { user } = useContext(AuthContext);
+    console.log(user);
 
     const { _id, name, price, img, descriprion, rating } = service;
+    // review submit
+    const handleReviewSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const review = form.review.value;
+        console.log(review);
+
+        const reviewData = {
+            service: _id,
+            review,
+            name: user.displayName,
+            img: user.photoURL,
+            insertionTime: new Date()
+        }
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(reviewData)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Your review posted successfully')
+                    form.reset();
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                toast.error('Failed to post review')
+            })
+    }
     return (
         <div className='w-11/12 mx-auto grid lg:grid-cols-4'>
             <div className='col-span-3'>
@@ -19,7 +59,7 @@ const ServiceDetails = () => {
                     <div className='w-full h-full'>
                         <PhotoProvider>
                             <PhotoView src={img}>
-                                <img src={img} alt="" />
+                                <img className='w-full' src={img} alt="" />
                             </PhotoView>
                         </PhotoProvider>
                     </div>
@@ -36,11 +76,34 @@ const ServiceDetails = () => {
                             descriprion
                         }
                     </p>
-
                 </Card>
             </div>
-            <div>
-                reviews
+            <div className='w-11/12 mx-auto'>
+                <h3 className='text-3xl font-bold text-sky-500 mx-2 rounded text-center'>Reviews</h3>
+                <div>
+                    Review Will Load here
+                </div>
+                <div>
+                    <h3 className='text-2xl font-bold text-sky-500 mx-2 rounded text-center my-5'>Write Your Review</h3>
+                    {
+                        user?.uid ?
+                            <form onSubmit={handleReviewSubmit} className='flex flex-col w-11/12 mx-auto'>
+                                <textarea
+                                    className='rounded-lg'
+                                    name='review'
+                                    placeholder='Write your review here'
+                                />
+                                <Button type='submit' className='my-5'>Submit Review</Button>
+                            </form>
+                            :
+                            <Link to="/login">
+                                <Button className='mx-auto' >
+                                    Please login to add a review
+                                </Button>
+                            </Link>
+                    }
+                </div>
+
             </div>
         </div>
     );

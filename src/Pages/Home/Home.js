@@ -1,27 +1,28 @@
 
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
-import logo from '../../assets/logo.png'
-import reception from '../../assets/banner/reciption.png'
-import { Button } from 'flowbite-react';
+import Banner from './Banner';
+import ServiceCard from '../Shared/ServiceCard';
+
 
 
 const Home = () => {
     useTitle('Home')
+    const services = useLoaderData();
+    console.log(services);
     return (
         <div>
             {/* banner Section*/}
-            <div className='w-full mx-auto flex flex-col items-start md:items-center lg:flex-row justify-center '>
-                <div>
-                    <img src={reception} alt="" />
-                </div>
-                <div className='my-5 ml-5'>
-                    <img width={100} src={logo} alt="" />
-                    <h1 className='md:text-3xl text-slate-700 font-bold flex'>Welcome <br /> to <br /> "MOMENTS BY SUSMOY"</h1>
-                    <p className='text-slate-700 text-lg'>I capture your dream moments</p>
-                    <Button gradientMonochrome='info' className='my-5' >Book Now</Button>
-                </div>
+            <Banner></Banner>
+            {/* Display service data */}
+            <p className='my-5 text-3xl text-center text-blue-700 font-bold'>My Services</p>
+            <div className='w-3/4 mx-auto my-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                {
+                    services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
+                }
             </div>
+
         </div>
     );
 };

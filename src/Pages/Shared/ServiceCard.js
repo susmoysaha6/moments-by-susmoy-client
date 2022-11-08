@@ -1,7 +1,9 @@
 import { Button, Card } from 'flowbite-react';
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceCard = ({ service }) => {
     const { _id, name, price, img, descriprion, rating } = service;
@@ -9,7 +11,11 @@ const ServiceCard = ({ service }) => {
         <div className="max-w-sm">
             <Card>
                 <div className='w-full h-full'>
-                    <img src={img} alt="" />
+                    <PhotoProvider>
+                        <PhotoView src={img}>
+                            <img src={img} alt="" />
+                        </PhotoView>
+                    </PhotoProvider>
                 </div>
                 <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {name}

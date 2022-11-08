@@ -1,9 +1,10 @@
 
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 import Banner from './Banner';
 import ServiceCard from '../Shared/ServiceCard';
+import { Button } from 'flowbite-react';
 
 
 
@@ -22,7 +23,11 @@ const Home = () => {
                     services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                 }
             </div>
-
+            <Link to="/services">
+                <Button className='mx-auto mb-10'>
+                    Load More Services
+                </Button>
+            </Link>
         </div>
     );
 };

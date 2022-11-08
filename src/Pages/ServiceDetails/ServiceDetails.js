@@ -36,6 +36,7 @@ const ServiceDetails = () => {
             service: _id,
             serviceName: name,
             review,
+            userEmail: user.email,
             userName: user.displayName,
             userImg: user.photoURL,
             insertionTime: new Date()

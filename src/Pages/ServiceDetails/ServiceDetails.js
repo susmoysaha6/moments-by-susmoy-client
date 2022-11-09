@@ -36,6 +36,7 @@ const ServiceDetails = () => {
         const reviewData = {
             service: _id,
             serviceName: name,
+            serviceImg: img,
             review,
             userEmail: user.email,
             userName: user.displayName,
@@ -67,8 +68,8 @@ const ServiceDetails = () => {
             })
     }
     return (
-        <div className='w-11/12 mx-auto grid lg:grid-cols-4'>
-            <div className='lg:col-span-3'>
+        <div className='w-11/12 mx-auto grid lg:grid-cols-3'>
+            <div className='lg:col-span-2'>
                 <Card>
                     <div className='w-full h-full'>
                         <PhotoProvider>

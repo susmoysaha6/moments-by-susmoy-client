@@ -157,7 +157,7 @@ const Header = () => {
                                                             Add Sevices
                                                         </p>
                                                     </Link>
-                                                    <Button onClick={handleLogOut} gradientMonochrome="info" className='w-1/4  my-2'>Log Out</Button>
+                                                    <Button onClick={handleLogOut} gradientMonochrome="info" className='w-1/2 md:w-1/4  my-2 '>Log Out</Button>
                                                 </>
                                                 :
                                                 <Link to="/login" >

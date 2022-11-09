@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import useTitle from '../../hooks/useTitle';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider'
 import ReviewDetails from './ReviewDetails';
+import toast from 'react-hot-toast';
 
 const MyReviews = () => {
     useTitle('My Reviews');
@@ -17,7 +18,25 @@ const MyReviews = () => {
             .then(data => setReviews(data))
     }, [user?.email])
 
-    console.log(user.displayName);
+    //   review delete
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to delete this review');
+
+        if (proceed) {
+            fetch(`http://localhost:5000/reviews/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('Review deleted Successfully');
+                        const remaining = reviews.filter(rv => rv._id !== id);
+                        setReviews(remaining);
+                    }
+                })
+        }
+    }
     return (
         <div>
             {
@@ -28,6 +47,7 @@ const MyReviews = () => {
                     reviews.map(singleReview => <ReviewDetails
                         key={singleReview._id}
                         singleReview={singleReview}
+                        handleDelete={handleDelete}
                     ></ReviewDetails>)
             }
         </div>

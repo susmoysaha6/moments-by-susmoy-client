@@ -1,5 +1,6 @@
 import { Button } from 'flowbite-react';
 import React from 'react';
+import toast from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle';
 
 const AddService = () => {
@@ -13,6 +14,34 @@ const AddService = () => {
         const descriprion = form.descriprion.value;
         const rating = form.rating.value;
         console.log(name, price, img, descriprion, rating);
+
+        const service = {
+            name,
+            price,
+            img,
+            descriprion,
+            rating,
+            insertionTime: new Date()
+        }
+
+        fetch(`http://localhost:5000/services`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(service)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Service posted successfully')
+                    form.reset();
+                }
+
+            })
+            .catch(err => console.error(err))
+
     }
     return (
         <div className='w-10/12 lg:w-1/2 mx-auto shadow-lg p-5 md:p-10 rounded' >

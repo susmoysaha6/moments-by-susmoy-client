@@ -15,7 +15,7 @@ const AddService = () => {
         console.log(name, price, img, descriprion, rating);
     }
     return (
-        <div className='w-10/12 lg:w-1/2 mx-auto shadow-lg p-10 rounded' >
+        <div className='w-10/12 lg:w-1/2 mx-auto shadow-lg p-5 md:p-10 rounded' >
             <p className='text-3xl text-center font-semibold'>
                 Add A New Service
             </p>

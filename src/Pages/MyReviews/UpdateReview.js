@@ -6,9 +6,13 @@ import { useParams } from 'react-router-dom';
 const UpdateReview = () => {
     const { id } = useParams();
     const [review, setReview] = useState({})
-    // const { serviceImg, serviceName, review } = review
+
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${id}`)
+        fetch(`http://localhost:5000/review/${id}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setReview(data))
     }, [id])
@@ -29,6 +33,7 @@ const UpdateReview = () => {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(updatedReview)
         })
@@ -38,7 +43,11 @@ const UpdateReview = () => {
                     toast.success('Your Review Updated Successfully')
                 }
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err);
+                toast.error('Can not update, Please Try Again')
+            }
+            )
     }
 
     return (

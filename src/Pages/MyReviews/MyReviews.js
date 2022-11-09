@@ -7,18 +7,25 @@ import { useNavigate } from 'react-router-dom';
 
 const MyReviews = () => {
     useTitle('My Reviews');
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     console.log(reviews);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
                 return res.json()
             })
             .then(data => setReviews(data))
-    }, [user?.email])
+    }, [user?.email, logOut])
 
     //   review delete
 
@@ -27,7 +34,10 @@ const MyReviews = () => {
 
         if (proceed) {
             fetch(`http://localhost:5000/reviews/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {

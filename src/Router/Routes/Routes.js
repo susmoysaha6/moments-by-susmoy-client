@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/services-on-homepage')
+                loader: () => fetch('https://photography-services-server.vercel.app/services-on-homepage')
             },
             {
                 path: '/login',
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch('http://localhost:5000/services')
+                loader: () => fetch('https://photography-services-server.vercel.app/services')
             },
             {
                 path: '/blogs',
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
             {
                 path: '/service/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://photography-services-server.vercel.app/services/${params.id}`)
             },
             {
                 path: '/add-service',

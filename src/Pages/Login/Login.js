@@ -10,7 +10,7 @@ import useTitle from '../../hooks/useTitle';
 const Login = () => {
     const [userEmail, setUserEmail] = useState('');
     const [error, setError] = useState('');
-    const { login, setLoading, resetPassword, loading } = useContext(AuthContext)
+    const { login, setLoading, resetPassword } = useContext(AuthContext)
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
@@ -31,7 +31,7 @@ const Login = () => {
                     email: user.email
                 }
                 console.log(currentUser);
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://photography-services-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

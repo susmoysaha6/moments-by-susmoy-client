@@ -19,7 +19,7 @@ const ServiceDetails = () => {
     const { _id, name, price, img, descriprion, rating } = service;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`https://photography-services-server.vercel.app/reviews/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
@@ -44,7 +44,7 @@ const ServiceDetails = () => {
             insertionTime: new Date()
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://photography-services-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -109,23 +109,29 @@ const ServiceDetails = () => {
                     }
                 </div>
                 <div>
-                    <h3 className='text-2xl font-bold text-sky-500 mx-2 rounded text-center my-5'>Write Your Review</h3>
                     {
-                        user?.uid ?
-                            <form onSubmit={handleReviewSubmit} className='flex flex-col w-11/12 mx-auto'>
-                                <textarea
-                                    className='rounded-lg'
-                                    name='review'
-                                    placeholder='Write your review here'
-                                />
-                                <Button type='submit' className='my-5'>Submit Review</Button>
-                            </form>
+                        user?.uid
+                            ?
+                            <>
+                                <h3 className='text-2xl font-bold text-sky-500 mx-2 rounded text-center my-5'>Write Your Review</h3>
+                                <form onSubmit={handleReviewSubmit} className='flex flex-col w-11/12 mx-auto'>
+                                    <textarea
+                                        className='rounded-lg'
+                                        name='review'
+                                        placeholder='Write your review here'
+                                    />
+                                    <Button type='submit' className='my-5'>Submit Review</Button>
+                                </form>
+                            </>
                             :
-                            <Link to="/login">
-                                <Button className='mx-auto' >
-                                    Please login to add a review
-                                </Button>
-                            </Link>
+                            <>
+                                <h3 className='text-2xl font-bold text-sky-500 mx-2 rounded text-center my-5'>Please login to add a review</h3>
+                                <Link to="/login">
+                                    <Button className='mx-auto' >
+                                        Login
+                                    </Button>
+                                </Link>
+                            </>
                     }
                 </div>
 

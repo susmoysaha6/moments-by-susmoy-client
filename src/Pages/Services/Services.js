@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 import ServiceCard from '../Shared/ServiceCard';
 
 const Services = () => {
     useTitle('Services')
+    const [isloading, setIsLoading] = useState(true);
     const services = useLoaderData();
     console.log(services);
     return (

@@ -8,7 +8,7 @@ const UpdateReview = () => {
     const [review, setReview] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${id}`, {
+        fetch(`https://photography-services-server.vercel.app/review/${id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -29,7 +29,7 @@ const UpdateReview = () => {
             review
         }
 
-        fetch(`http://localhost:5000/review/${id}`, {
+        fetch(`https://photography-services-server.vercel.app/review/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

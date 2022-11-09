@@ -1,7 +1,7 @@
 import { Button } from 'flowbite-react';
 import React from 'react';
 
-const ReviewDetails = ({ singleReview, handleDelete }) => {
+const ReviewDetails = ({ singleReview, handleDelete, handleUpdate }) => {
     const { review, serviceName,
         serviceImg, _id } = singleReview;
 
@@ -17,8 +17,16 @@ const ReviewDetails = ({ singleReview, handleDelete }) => {
                     </div>
                 </div>
                 <div className="flex items-center space-x-2 dark:text-yellow-500">
-                    <Button color="success">Update</Button>
-                    <Button onClick={() => handleDelete(_id)} color="failure">X</Button>
+                    {/* upadte button */}
+                    <Button
+                        onClick={() => handleUpdate(_id)}
+                        color="success">Update
+                    </Button>
+
+                    {/* delete Button */}
+                    <Button
+                        onClick={() => handleDelete(_id)} color="failure">X
+                    </Button>
                 </div>
             </div>
             <div className="p-4 space-y-2  font-bold">

@@ -15,7 +15,7 @@ const ReviewCard = ({ singleReview }) => {
                     </div>
                 </div>
             </div>
-            <div className="p-4 space-y-2 text-sm">
+            <div className="p-4 space-y-2 font-semibold">
                 <p>{review}</p>
             </div>
         </div>

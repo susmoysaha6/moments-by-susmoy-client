@@ -95,7 +95,7 @@ const ServiceDetails = () => {
             </div>
             {/* review section */}
             <div className='w-11/12 mx-auto'>
-                <h3 className='text-3xl font-bold text-sky-500 mx-2 rounded text-center'>Reviews</h3>
+                <h3 className='text-3xl font-bold text-sky-500 mx-2 rounded text-center my-5'>Reviews</h3>
                 <div>
                     {
                         reviews.map(

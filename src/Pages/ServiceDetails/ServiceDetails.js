@@ -7,6 +7,7 @@ import useTitle from '../../hooks/useTitle';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import ReviewCard from './ReviewCard';
 
 
 const ServiceDetails = () => {
@@ -67,7 +68,7 @@ const ServiceDetails = () => {
     }
     return (
         <div className='w-11/12 mx-auto grid lg:grid-cols-4'>
-            <div className='col-span-3'>
+            <div className='lg:col-span-3'>
                 <Card>
                     <div className='w-full h-full'>
                         <PhotoProvider>
@@ -97,7 +98,11 @@ const ServiceDetails = () => {
                 <div>
                     {
                         reviews.map(
-                            review => <p key={review.insertionTime}>{review.review}</p>
+                            singleReview =>
+                                <ReviewCard
+                                    key={singleReview.insertionTime}
+                                    singleReview={singleReview}>
+                                </ReviewCard>
                         )
                     }
                 </div>

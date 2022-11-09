@@ -2,7 +2,7 @@ import { Button, Card } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Link, Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';

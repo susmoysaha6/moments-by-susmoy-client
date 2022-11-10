@@ -7,6 +7,7 @@ import ServiceCard from '../Shared/ServiceCard';
 import { Button } from 'flowbite-react';
 import AboutMe from './AboutMe';
 import MyWorks from './MyWorks';
+import Achivements from './Achivements';
 
 
 
@@ -34,6 +35,8 @@ const Home = () => {
             <AboutMe></AboutMe>
             {/* {My works section} */}
             <MyWorks></MyWorks>
+            {/* Achivements */}
+            <Achivements></Achivements>
         </div>
     );
 };

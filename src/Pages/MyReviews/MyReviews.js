@@ -56,7 +56,7 @@ const MyReviews = () => {
     }
 
     return (
-        <div>
+        <div className='mt-20 mb-96'>
             <h1 className='text-center text-3xl text-sky-500 font-bold'>My Reviews</h1>
             {
                 reviews.length === 0

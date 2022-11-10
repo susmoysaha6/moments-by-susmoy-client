@@ -6,7 +6,8 @@ const ReviewDetails = ({ singleReview, handleDelete, handleUpdate }) => {
         serviceImg, _id } = singleReview;
 
     return (
-        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100 mt-12 mb-96">
+        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100 mt-2 
+        ">
             <div className="flex justify-between p-4">
                 <div className="flex items-center space-x-4">
                     <div>

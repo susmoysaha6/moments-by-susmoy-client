@@ -5,6 +5,7 @@ import useTitle from '../../hooks/useTitle';
 import Banner from './Banner';
 import ServiceCard from '../Shared/ServiceCard';
 import { Button } from 'flowbite-react';
+import AboutMe from './AboutMe';
 
 
 
@@ -28,6 +29,8 @@ const Home = () => {
                     Load More Services
                 </Button>
             </Link>
+            {/* About Me Section */}
+            <AboutMe></AboutMe>
         </div>
     );
 };

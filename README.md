@@ -1,3 +1,30 @@
+# Project Name: MOMENTS BY SUSMOY
+
+## Live Website: https://photography-services-acf79.web.app/
+
+### Feature and Functionality
+
+* It is a website of a photoghraper.
+* In home section I load 3 services , the api was limit by server side.
+* There is Load more button which is redirect to services route.
+* In Service route All services are loaded
+* Before data fetching services page I use a spinner.
+* In service detail page details of that service review on that service loaded and displayed
+* In my reviews pages displayed all review by a logged in user. It is private route.
+* In Add Services Page a there is a form to add an service. This is also a private route
+
+### Technology User
+
+* React
+* React-router-dom
+* Context api
+* Tailwind CSS
+* Flowbite-React Component Library
+* Firebase Authentication
+* React photo view
+* React icons
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

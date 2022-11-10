@@ -56,7 +56,7 @@ const Header = () => {
                                 </Link>
                                 <Link to="/add-service" >
                                     <p className='text-2xl font-semibold'>
-                                        Add Sevices
+                                        Add Services
                                     </p>
                                 </Link>
                                 <Button gradientMonochrome="info" onClick={handleLogOut}>Log Out</Button>
@@ -154,7 +154,7 @@ const Header = () => {
                                                     </Link>
                                                     <Link to="/add-service" >
                                                         <p className='text-lg font-semibold my-2 hover:p-2 hover:bg-sky-400 hover:rounded hover:text-gray-800'>
-                                                            Add Sevices
+                                                            Add Services
                                                         </p>
                                                     </Link>
                                                     <Button onClick={handleLogOut} gradientMonochrome="info" className='w-1/2 md:w-1/4  my-2 '>Log Out</Button>

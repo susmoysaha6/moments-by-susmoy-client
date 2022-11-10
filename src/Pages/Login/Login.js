@@ -31,6 +31,7 @@ const Login = () => {
                     email: user.email
                 }
                 console.log(currentUser);
+                setLoading(true);
                 fetch('https://photography-services-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
@@ -65,9 +66,10 @@ const Login = () => {
             .catch(error => toast.error(error.message))
     }
     return (
-        <div className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-5 mb-24 shadow-2xl p-5">
+
+        < div className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-5 mb-24 shadow-2xl p-5" >
             {/* Login form */}
-            <form onSubmit={handleLoginSubmit} >
+            < form onSubmit={handleLoginSubmit} >
                 <h3 className="text-2xl text-center font-semibold">Login</h3>
                 <div className='my-5'>
                     <div className="mb-2 block">
@@ -108,19 +110,18 @@ const Login = () => {
                 <Button className='w-full mt-5' type="submit">
                     Login
                 </Button>
-            </form>
+            </form >
             {/* Reset password */}
-            <p className='mt-3 text-lg font-semibold'>Forget Password
-                <button
-                    onClick={handleReset} className='text-blue-600 ml-2'>
+            < p className='mt-3 text-lg font-semibold' > Forget Password
+                < button
+                    onClick={handleReset} className='text-blue-600 ml-2' >
                     Click Here
-                </button>
-            </p>
+                </button >
+            </p >
             {/* sign in with google */}
-            <p className='text-center'>Or,</p>
+            < p className='text-center' > Or,</p >
             <SocialLogin />
-        </div>
-
+        </div >
     );
 };
 

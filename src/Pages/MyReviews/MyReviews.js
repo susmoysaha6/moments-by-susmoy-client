@@ -60,7 +60,7 @@ const MyReviews = () => {
             {
                 reviews.length === 0
                     ?
-                    <p className='text-center text-blue-700 text-2xl font-bold my-48 md:my-72'>No Reviews Were Added</p>
+                    <p className='text-center text-blue-700 text-2xl font-bold my-48 md:my-96'>No Reviews Were Added</p>
                     :
                     reviews.map(singleReview => <ReviewDetails
                         key={singleReview._id}

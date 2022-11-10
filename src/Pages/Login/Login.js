@@ -16,14 +16,17 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
     console.log(from);
     useTitle('Login')
-    // login 
+
+    if (loading) {
+        return <div className="w-16 h-16 mx-auto my-32 border-4 border-dashed border-sky-700 rounded-full animate-spin dark:border-sky-400 "></div>
+    }
+
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        setLoading(true);
 
         login(email, password)
             .then(result => {
@@ -68,7 +71,7 @@ const Login = () => {
     }
     return (
 
-        < div className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-5 mb-24 shadow-2xl p-5" >
+        < div className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-20 mb-72 shadow-2xl p-5" >
             {/* Login form */}
             < form onSubmit={handleLoginSubmit} >
                 <h3 className="text-2xl text-center font-semibold">Login</h3>

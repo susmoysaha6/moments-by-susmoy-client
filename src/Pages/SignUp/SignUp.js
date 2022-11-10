@@ -6,10 +6,14 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
-    const { createUser, updateUserProfile, } = useContext(AuthContext);
+    const { createUser, updateUserProfile, setLoading, loading } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
     useTitle('Sign Up')
+
+    if (loading) {
+        return <div className="w-16 h-16 mx-auto my-32 border-4 border-dashed border-sky-700 rounded-full animate-spin dark:border-sky-400 "></div>
+    }
 
     // Sign up
     const handleSignUpSubmit = (e) => {
@@ -19,6 +23,7 @@ const SignUp = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
+
 
         createUser(email, password)
             .then(result => {
@@ -35,6 +40,9 @@ const SignUp = () => {
                 setError(error.message);
                 toast.error(error.message);
             })
+            .finally(() => {
+                setLoading(false)
+            })
 
     }
     // update user
@@ -50,7 +58,7 @@ const SignUp = () => {
             })
     };
     return (
-        <form onSubmit={handleSignUpSubmit} className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 my-5 shadow-2xl p-5">
+        <form onSubmit={handleSignUpSubmit} className="md:w-1/2 lg:w-1/4 mx-auto flex flex-col gap-4 mt-20 mb-72 shadow-2xl p-5">
             <h3 className="text-2xl text-center font-semibold">Sign Up</h3>
             <div>
                 <div className="mb-2 block">

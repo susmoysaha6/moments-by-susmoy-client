@@ -5,7 +5,7 @@ import useTitle from '../../hooks/useTitle';
 const Blogs = () => {
     useTitle('Blogs');
     return (
-        <div className='w-11/12 md:w-1/2 mx-auto'>
+        <div className='w-11/12 md:w-1/2 mx-auto mb-24'>
             <h1 className="text-3xl font-semibold my-5 text-center text-gray-700">Blogs</h1>
             <Accordion>
                 <Accordion.Panel>

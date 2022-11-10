@@ -13,7 +13,7 @@
 * In my reviews pages displayed all review by a logged in user. It is private route.
 * In Add Services Page a there is a form to add an service. This is also a private route
 
-### Technology User
+### Technology Used
 
 * React
 * React-router-dom

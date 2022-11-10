@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutMe = () => {
     return (
-        <div className='w-3/4 mx-auto grid md:grid-cols-2 shadow'>
+        <div className='w-11/12 lg:w-3/4 mx-auto grid md:grid-cols-2 shadow'>
             <div className='w-full'>
                 <img className='w-full h-full' src="https://i.ibb.co/GVGBj62/susbg.png" alt="" />
             </div>

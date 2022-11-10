@@ -6,6 +6,7 @@ import Banner from './Banner';
 import ServiceCard from '../Shared/ServiceCard';
 import { Button } from 'flowbite-react';
 import AboutMe from './AboutMe';
+import MyWorks from './MyWorks';
 
 
 
@@ -31,6 +32,8 @@ const Home = () => {
             </Link>
             {/* About Me Section */}
             <AboutMe></AboutMe>
+            {/* {My works section} */}
+            <MyWorks></MyWorks>
         </div>
     );
 };

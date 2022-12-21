@@ -2,8 +2,8 @@ import React from 'react';
 
 const Achivements = () => {
     return (
-        <div>
-            <h1 className='text-2xl text-slate-600 font-semibold text-center'>My Achievements</h1>
+        <div className=' w-3/4 mx-auto shadow '>
+            <h1 className='text-2xl  text-slate-600 font-semibold text-center mt-5 '>My Achievements</h1>
             <section className="p-6 dark:bg-gray-800 dark:text-gray-100">
                 <div className="container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-3">
                     <div className="flex flex-col justify-start m-2 lg:m-6">

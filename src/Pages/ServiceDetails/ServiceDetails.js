@@ -71,11 +71,11 @@ const ServiceDetails = () => {
     return (
         <div className='w-11/12 mx-auto grid lg:grid-cols-3'>
             <div className='lg:col-span-2'>
-                <Card>
-                    <div className='w-full h-full'>
+                <Card className=''>
+                    <div className=''>
                         <PhotoProvider>
                             <PhotoView src={img}>
-                                <img className='w-full' src={img} alt="" />
+                                <img className='' src={img} alt="" />
                             </PhotoView>
                         </PhotoProvider>
                     </div>
